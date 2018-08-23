@@ -1,0 +1,13 @@
+*~
+\#*
+output.txt
+target/
+.DS_Store
+.idea/
+dependency-reduced-pom.xml
+*.iml
+.terraform/
+*.tfstate.*
+*.pyc
+
+*.bak
