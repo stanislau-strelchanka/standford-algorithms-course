@@ -1,4 +1,4 @@
-package org.learn.coursera.divideconquer.multiplication;
+package org.learn.coursera.divideconquer.week1.multiplication;
 
 public class KaratsubaAlgorithm {
 
