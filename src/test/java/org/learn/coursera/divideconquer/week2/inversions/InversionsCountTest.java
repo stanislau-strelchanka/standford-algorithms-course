@@ -23,6 +23,6 @@ public class InversionsCountTest {
                 Arrays.asList(2, 4, 6));
 
         assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6), listAndNumberOfInversions.getNumbers());
-        assertEquals(0, listAndNumberOfInversions.getNumberOfInversions());
+        assertEquals(3, listAndNumberOfInversions.getNumberOfInversions());
     }
 }
