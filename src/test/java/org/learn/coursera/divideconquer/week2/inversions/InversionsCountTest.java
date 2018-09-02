@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InversionsCountTest {
 
@@ -18,13 +17,13 @@ public class InversionsCountTest {
 
     @Test
     public void test() {
-        final int numberOfInversions = inversionsCount.count(Arrays.asList(1, 5, 2, 4));
+        final long numberOfInversions = inversionsCount.count(Arrays.asList(1, 5, 2, 4));
         assertEquals(2, numberOfInversions);
     }
 
     @Test
     public void test2() {
-        final int numberOfInversions = inversionsCount.count(Arrays.asList(1, 5, 3, 6, 4, 2));
+        final long numberOfInversions = inversionsCount.count(Arrays.asList(1, 5, 3, 6, 4, 2));
         assertEquals(7, numberOfInversions);
     }
 
@@ -49,9 +48,9 @@ public class InversionsCountTest {
                 numbers.add(Integer.valueOf(line));
             }
 
-            final int count = inversionsCount.count(numbers);
+            final long count = inversionsCount.count(numbers);
             System.out.println(count);
-            assertTrue(count > 0);
+            assertEquals(2407905288L, count);
         }
     }
 }

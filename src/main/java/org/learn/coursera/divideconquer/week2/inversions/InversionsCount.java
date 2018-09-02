@@ -5,7 +5,7 @@ import java.util.List;
 
 public class InversionsCount {
 
-    public int count(final List<Integer> numbers) {
+    public long count(final List<Integer> numbers) {
         ListAndNumberOfInversions listAndNumberOfInversions = sortAndCountInversions(numbers);
         return listAndNumberOfInversions.getNumberOfInversions();
     }
@@ -16,9 +16,9 @@ public class InversionsCount {
             final List<Integer> a = numbers.subList(0, splitIndex);
             final List<Integer> b = numbers.subList(splitIndex, numbers.size());
             ListAndNumberOfInversions listAndNumberOfInversionsa = sortAndCountInversions(a);
-            final int aInversions = listAndNumberOfInversionsa.getNumberOfInversions();
+            final long aInversions = listAndNumberOfInversionsa.getNumberOfInversions();
             ListAndNumberOfInversions listAndNumberOfInversionsb = sortAndCountInversions(b);
-            final int bInversions = listAndNumberOfInversionsb.getNumberOfInversions();
+            final long bInversions = listAndNumberOfInversionsb.getNumberOfInversions();
 
             final ListAndNumberOfInversions listAndNumberOfInversions = mergeAndCountInversions(
                     listAndNumberOfInversionsa.getNumbers(),
@@ -36,7 +36,7 @@ public class InversionsCount {
     ListAndNumberOfInversions mergeAndCountInversions(final List<Integer> a, final List<Integer> b) {
         final int resultingListSize = a.size() + b.size();
         final List<Integer> resultingList = new ArrayList<>(resultingListSize);
-        int resultingInversionsCount = 0;
+        long resultingInversionsCount = 0;
 
         int aIndex = 0, bIndex = 0;
         for (int i = 0; i < resultingListSize; i++) {
@@ -46,7 +46,7 @@ public class InversionsCount {
             if ((aNumber < bNumber && aIndex < a.size()) || bIndex == b.size()) {
                 resultingList.add(aNumber);
                 aIndex++;
-            } else {
+            } else if(bIndex < b.size()){
                 resultingInversionsCount += a.size() - aIndex;
                 resultingList.add(bNumber);
                 bIndex++;
@@ -58,9 +58,9 @@ public class InversionsCount {
     public static class ListAndNumberOfInversions {
 
         private final List<Integer> numbers;
-        private final int numberOfInversions;
+        private final long numberOfInversions;
 
-        public ListAndNumberOfInversions(final List<Integer> numbers, final int numberOfInversions) {
+        public ListAndNumberOfInversions(final List<Integer> numbers, final long numberOfInversions) {
             this.numbers = numbers;
             this.numberOfInversions = numberOfInversions;
         }
@@ -69,7 +69,7 @@ public class InversionsCount {
             return numbers;
         }
 
-        public int getNumberOfInversions() {
+        public long getNumberOfInversions() {
             return numberOfInversions;
         }
     }
