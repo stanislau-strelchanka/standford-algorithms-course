@@ -47,9 +47,7 @@ public class InversionsCount {
                 resultingList.add(aNumber);
                 aIndex++;
             } else {
-                if (aIndex < a.size()) {
-                    resultingInversionsCount += a.size() - aIndex;
-                }
+                resultingInversionsCount += a.size() - aIndex;
                 resultingList.add(bNumber);
                 bIndex++;
             }
