@@ -18,6 +18,12 @@ public class InversionsCountTest {
 
     @Test
     public void test2() {
+        final int numberOfInversions = inversionsCount.count(Arrays.asList(1, 5, 3, 6, 4, 2));
+        assertEquals(7, numberOfInversions);
+    }
+
+    @Test
+    public void testMerge() {
         final InversionsCount.ListAndNumberOfInversions listAndNumberOfInversions = inversionsCount.mergeAndCountInversions(
                 Arrays.asList(1, 3, 5),
                 Arrays.asList(2, 4, 6));

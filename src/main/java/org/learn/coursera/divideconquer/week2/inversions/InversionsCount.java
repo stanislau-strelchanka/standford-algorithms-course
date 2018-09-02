@@ -1,13 +1,36 @@
 package org.learn.coursera.divideconquer.week2.inversions;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class InversionsCount {
 
     public int count(final List<Integer> numbers) {
-        return 0;
+        ListAndNumberOfInversions listAndNumberOfInversions = sortAndCountInversions(numbers);
+        return listAndNumberOfInversions.getNumberOfInversions();
+    }
+
+    ListAndNumberOfInversions sortAndCountInversions(final List<Integer> numbers) {
+        if (numbers.size() > 1) {
+            final int splitIndex = numbers.size() / 2;
+            final List<Integer> a = numbers.subList(0, splitIndex);
+            final List<Integer> b = numbers.subList(splitIndex, numbers.size());
+            ListAndNumberOfInversions listAndNumberOfInversionsa = sortAndCountInversions(a);
+            final int aInversions = listAndNumberOfInversionsa.getNumberOfInversions();
+            ListAndNumberOfInversions listAndNumberOfInversionsb = sortAndCountInversions(b);
+            final int bInversions = listAndNumberOfInversionsb.getNumberOfInversions();
+
+            final ListAndNumberOfInversions listAndNumberOfInversions = mergeAndCountInversions(
+                    listAndNumberOfInversionsa.getNumbers(),
+                    listAndNumberOfInversionsb.getNumbers());
+
+            return new ListAndNumberOfInversions(listAndNumberOfInversions.getNumbers(),
+                    listAndNumberOfInversions.getNumberOfInversions()
+                            + aInversions
+                            + bInversions);
+        } else {
+            return new ListAndNumberOfInversions(numbers, 0);
+        }
     }
 
     ListAndNumberOfInversions mergeAndCountInversions(final List<Integer> a, final List<Integer> b) {
@@ -20,7 +43,7 @@ public class InversionsCount {
             Integer aNumber = a.get(Math.min(aIndex, a.size() - 1));
             Integer bNumber = b.get(Math.min(bIndex, b.size() - 1));
 
-            if (aNumber < bNumber && aIndex < a.size()) {
+            if ((aNumber < bNumber && aIndex < a.size()) || bIndex == b.size()) {
                 resultingList.add(aNumber);
                 aIndex++;
             } else {
