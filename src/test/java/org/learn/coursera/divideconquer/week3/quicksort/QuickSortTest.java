@@ -14,7 +14,16 @@ public class QuickSortTest {
     @Test
     public void test() {
         final List<Integer> numbers = Arrays.asList(3, 5, 2, 4, 1);
-        quickSort.partition(numbers, 0, numbers.size());
-        assertEquals(Arrays.asList(2, 1, 3, 4, 5), numbers);
+        final int index = quickSort.partition(numbers, 0, numbers.size() - 1);
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5), numbers);
+        assertEquals(index, numbers.indexOf(3));
+    }
+
+    @Test
+    public void test2() {
+        final List<Integer> numbers = Arrays.asList(3, 8, 2, 5, 1, 4, 7, 6);
+        final int index = quickSort.partition(numbers, 0, numbers.size() - 1);
+        assertEquals(Arrays.asList(1, 2, 3, 5, 8, 4, 7, 6), numbers);
+        assertEquals(index, numbers.indexOf(3));
     }
 }
