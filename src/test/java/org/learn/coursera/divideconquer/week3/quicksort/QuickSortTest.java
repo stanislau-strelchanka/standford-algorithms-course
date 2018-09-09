@@ -43,4 +43,11 @@ public class QuickSortTest {
         quickSort.sort(numbers);
         assertEquals(numbersSorted, numbers);
     }
+
+    @Test
+    public void test5() {
+        final List<Integer> numbers = Arrays.asList(3, 5, 2, 4, 1);
+        final int totalComparisons = quickSort.sort(numbers);
+        assertEquals(6, totalComparisons);
+    }
 }
