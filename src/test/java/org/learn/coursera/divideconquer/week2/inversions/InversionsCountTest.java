@@ -1,6 +1,7 @@
 package org.learn.coursera.divideconquer.week2.inversions;
 
 import org.junit.jupiter.api.Test;
+import org.learn.coursera.divideconquer.TestUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,6 +9,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -39,18 +41,9 @@ public class InversionsCountTest {
 
     @Test
     public void testProgrammingAssignment() throws IOException {
-        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
-                inversionsCount.getClass().getClassLoader().getResourceAsStream("week2/integers.txt"),
-                StandardCharsets.UTF_8))) {
-            final ArrayList<Integer> numbers = new ArrayList<>(100_000);
-            String line = "";
-            while ((line = reader.readLine()) != null) {
-                numbers.add(Integer.valueOf(line));
-            }
-
-            final long count = inversionsCount.count(numbers);
-            System.out.println(count);
-            assertEquals(2407905288L, count);
-        }
+        final List<Integer> numbers = TestUtils.readFileLines("week2/integers.txt");
+        final long count = inversionsCount.count(numbers);
+        System.out.println(count);
+        assertEquals(2407905288L, count);
     }
 }
