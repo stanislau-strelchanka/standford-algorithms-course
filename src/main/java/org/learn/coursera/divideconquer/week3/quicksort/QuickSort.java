@@ -9,7 +9,13 @@ public class QuickSort {
     }
 
     void sort(final List<Integer> numbers, final int startIndex, final int endIndex) {
-
+        if (startIndex < endIndex) {
+            final int pivotIndex = choosePivotIndex(numbers, startIndex, endIndex);
+            swap(numbers, pivotIndex, startIndex);
+            final int pivotFinalIndex = partition(numbers, startIndex, endIndex);
+            sort(numbers, startIndex, pivotFinalIndex - 1);
+            sort(numbers, pivotFinalIndex + 1, endIndex);
+        }
     }
 
     int partition(final List<Integer> numbers, final int startIndex, final int endIndex) {
@@ -24,6 +30,10 @@ public class QuickSort {
         }
         swap(numbers, startIndex, i - 1);
         return i - 1;
+    }
+
+    int choosePivotIndex(final List<Integer> numbers, final int startIndex, final int endIndex) {
+        return startIndex;
     }
 
     void swap(final List<Integer> numbers, final int firstIndex, final int secondIndex) {

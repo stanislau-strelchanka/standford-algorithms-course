@@ -26,4 +26,11 @@ public class QuickSortTest {
         assertEquals(Arrays.asList(1, 2, 3, 5, 8, 4, 7, 6), numbers);
         assertEquals(index, numbers.indexOf(3));
     }
+
+    @Test
+    public void test3() {
+        final List<Integer> numbers = Arrays.asList(3, 8, 2, 5, 1, 4, 7, 6);
+        quickSort.sort(numbers);
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8), numbers);
+    }
 }
