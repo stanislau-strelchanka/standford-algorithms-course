@@ -3,6 +3,7 @@ package org.learn.coursera.divideconquer.week3.quicksort;
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.divideconquer.TestUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,15 +64,28 @@ public class QuickSortTest {
         final List<Integer> numbers = Arrays.asList(3, 8, 2, 5, 1, 4, 7, 6);
         MedianOfThreePivotQuickSort quickSort = new MedianOfThreePivotQuickSort();
         int i = quickSort.choosePivotIndex(numbers, 0, numbers.size() - 1);
-        assertEquals(0, i);
+        assertEquals(3, i);
 
         i = quickSort.choosePivotIndex(numbers, 0, 2);
-        assertEquals(2, i);
+        assertEquals(0, i);
 
         i = quickSort.choosePivotIndex(numbers, 1, 5);
-        assertEquals(5, i);
+        assertEquals(3, i);
 
         i = quickSort.choosePivotIndex(numbers, 3, 7);
-        assertEquals(5, i);
+        assertEquals(3, i);
+    }
+
+    @Test
+    public void testProgrammingAssignment() {
+        final QuickSort firstPivotElemSort = new FirstElementPivotQuickSort();
+        final QuickSort lastPivotElemSort = new LastElementPivotQuickSort();
+        final QuickSort medianPivotElemSort = new MedianOfThreePivotQuickSort();
+
+        final List<Integer> numbers = TestUtils.readFileLines("week3/integers.txt");
+
+        assertEquals(162085, firstPivotElemSort.sort(new ArrayList<>(numbers)));
+        assertEquals(164123, lastPivotElemSort.sort(new ArrayList<>(numbers)));
+        assertEquals(138382, medianPivotElemSort.sort(new ArrayList<>(numbers)));
     }
 }
