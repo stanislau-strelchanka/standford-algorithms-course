@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class QuickSortTest {
 
-    private QuickSort quickSort = new QuickSort();
+    private QuickSort quickSort = new LastElementPivotQuickSort();
 
     @Test
     public void test() {
@@ -47,7 +47,14 @@ public class QuickSortTest {
     @Test
     public void test5() {
         final List<Integer> numbers = Arrays.asList(3, 5, 2, 4, 1);
-        final int totalComparisons = quickSort.sort(numbers);
+        final int totalComparisons = new FirstElementPivotQuickSort().sort(numbers);
         assertEquals(6, totalComparisons);
+    }
+
+    @Test
+    public void test6() {
+        final List<Integer> numbers = Arrays.asList(3, 5, 2, 4, 1);
+        final int totalComparisons = new LastElementPivotQuickSort().sort(numbers);
+        assertEquals(8, totalComparisons);
     }
 }

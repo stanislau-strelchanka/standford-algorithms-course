@@ -2,7 +2,7 @@ package org.learn.coursera.divideconquer.week3.quicksort;
 
 import java.util.List;
 
-public class QuickSort {
+public abstract class QuickSort {
 
     public int sort(final List<Integer> numbers) {
         return  sort(numbers, 0, numbers.size() - 1);
@@ -41,9 +41,7 @@ public class QuickSort {
         return i - 1;
     }
 
-    int choosePivotIndex(final List<Integer> numbers, final int startIndex, final int endIndex) {
-        return startIndex;
-    }
+    abstract int choosePivotIndex(final List<Integer> numbers, final int startIndex, final int endIndex);
 
     void swap(final List<Integer> numbers, final int firstIndex, final int secondIndex) {
         final Integer first = numbers.get(firstIndex);
