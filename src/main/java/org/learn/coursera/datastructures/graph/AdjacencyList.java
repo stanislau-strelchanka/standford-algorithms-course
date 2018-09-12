@@ -1,7 +1,12 @@
 package org.learn.coursera.datastructures.graph;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class AdjacencyList {
 
@@ -24,11 +29,44 @@ public class AdjacencyList {
         this.edges = edges;
     }
 
+    public Vertex findOrCreateVertex(final String name) {
+        Vertex result = null;
+        final Optional<Vertex> first = vertices.stream()
+                .filter(item -> Objects.equals(item.getName(), name))
+                .findFirst();
+        if (first.isPresent()) {
+            result = first.get();
+        } else {
+            result = new Vertex(name);
+            vertices.add(result);
+        }
+        return result;
+    }
+
+    public void createEdge(final Vertex vertex1, final Vertex vertex2) {
+        Edge result = null;
+        final Edge edge = new Edge(vertex1, vertex2);
+        Optional<Edge> first = edges.stream()
+                .filter(item -> item.containsVertex(edge.vertices[0]) && item.containsVertex(edge.vertices[1]))
+                .findFirst();
+        if (first.isPresent()) {
+            result = first.get();
+        } else {
+            result = edge;
+            edges.add(result);
+        }
+
+        vertex1.getAdjacentEdges().add(result);
+    }
+
     public static class Vertex {
 
-        private String name;
+        private final String name;
         private List<Edge> adjacentEdges = new ArrayList<>();
 
+        public Vertex(final String name) {
+            this.name = name;
+        }
 
         public List<Edge> getAdjacentEdges() {
             return adjacentEdges;
@@ -42,35 +80,28 @@ public class AdjacencyList {
             return name;
         }
 
-        public void setName(final String name) {
-            this.name = name;
+        @Override
+        public String toString() {
+            return name;
         }
     }
 
     public static class Edge {
 
-        private Vertex input;
-        private Vertex output;
+        private Vertex[] vertices = new Vertex[2];
 
         public Edge(final Vertex input, final Vertex output) {
-            this.input = input;
-            this.output = output;
+            vertices[0] = input;
+            vertices[1] = output;
         }
 
-        public Vertex getInput() {
-            return input;
+        public boolean containsVertex(final Vertex vertex) {
+            return vertices[0].name.equals(vertex.name) || vertices[1].name.equals(vertex.name);
         }
 
-        public void setInput(final Vertex input) {
-            this.input = input;
-        }
-
-        public Vertex getOutput() {
-            return output;
-        }
-
-        public void setOutput(final Vertex output) {
-            this.output = output;
+        @Override
+        public String toString() {
+            return Stream.of(vertices).map(Vertex::getName).collect(Collectors.joining(","));
         }
     }
 }
