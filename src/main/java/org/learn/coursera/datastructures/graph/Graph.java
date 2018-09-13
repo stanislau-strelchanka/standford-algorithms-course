@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Graph {
+public class Graph implements Cloneable{
 
     private List<Vertex> vertices = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
@@ -58,6 +58,14 @@ public class Graph {
             vertices.add(result);
         }
         return result;
+    }
+
+    public Graph deepClone() {
+        final Graph graph = new Graph();
+        for (final Edge edge : getEdges()) {
+            graph.createEdge(edge.vertices[0].name, edge.vertices[1].name);
+        }
+        return graph;
     }
 
     public static class Vertex {

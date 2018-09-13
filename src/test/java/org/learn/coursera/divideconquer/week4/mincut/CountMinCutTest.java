@@ -10,8 +10,7 @@ public class CountMinCutTest {
 
     private CountMinCut countMinCut = new CountMinCut();
 
-    @Test
-    public void test() {
+    private Graph createDummyGraph() {
         final Graph graph = new Graph();
         graph.createEdge("1", "2");
         graph.createEdge("1", "4");
@@ -27,13 +26,27 @@ public class CountMinCutTest {
         graph.createEdge("4", "2");
         graph.createEdge("4", "3");
 
-        final int count = countMinCut.count(graph);
+        return graph;
+    }
+
+    @Test
+    public void test() {
+        final int count = countMinCut.count(createDummyGraph());
 
         assertEquals(2, count);
     }
 
     @Test
     public void test2() {
+        final Graph graph = createDummyGraph();
+        final Graph clone = graph.deepClone();
+
+        assertEquals(graph.getEdges().size(), clone.getEdges().size());
+        assertEquals(graph.getVertices().size(), clone.getVertices().size());
+    }
+
+    @Test
+    public void testAssignment() {
         Graph graph = TestUtils.readGraph("week4/kargerMinCut.txt");
     }
 }
