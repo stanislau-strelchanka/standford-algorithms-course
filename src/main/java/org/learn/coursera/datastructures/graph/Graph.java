@@ -1,14 +1,13 @@
 package org.learn.coursera.datastructures.graph;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class AdjacencyList {
+public class Graph {
 
     private List<Vertex> vertices = new ArrayList<>();
     private List<Edge> edges = new ArrayList<>();
@@ -29,6 +28,24 @@ public class AdjacencyList {
         this.edges = edges;
     }
 
+    public void createEdge(final String sourceName, final String destName) {
+        Edge result = null;
+        Vertex source = findOrCreateVertex(sourceName);
+        Vertex dest = findOrCreateVertex(destName);
+        final Edge edge = new Edge(source, dest);
+        Optional<Edge> first = edges.stream()
+                .filter(item -> item.containsVertex(edge.vertices[0]) && item.containsVertex(edge.vertices[1]))
+                .findFirst();
+        if (first.isPresent()) {
+            result = first.get();
+        } else {
+            result = edge;
+            edges.add(result);
+        }
+
+        source.getAdjacentEdges().add(result);
+    }
+
     public Vertex findOrCreateVertex(final String name) {
         Vertex result = null;
         final Optional<Vertex> first = vertices.stream()
@@ -41,22 +58,6 @@ public class AdjacencyList {
             vertices.add(result);
         }
         return result;
-    }
-
-    public void createEdge(final Vertex vertex1, final Vertex vertex2) {
-        Edge result = null;
-        final Edge edge = new Edge(vertex1, vertex2);
-        Optional<Edge> first = edges.stream()
-                .filter(item -> item.containsVertex(edge.vertices[0]) && item.containsVertex(edge.vertices[1]))
-                .findFirst();
-        if (first.isPresent()) {
-            result = first.get();
-        } else {
-            result = edge;
-            edges.add(result);
-        }
-
-        vertex1.getAdjacentEdges().add(result);
     }
 
     public static class Vertex {
