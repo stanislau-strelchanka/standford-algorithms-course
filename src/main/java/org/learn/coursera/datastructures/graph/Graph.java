@@ -46,7 +46,7 @@ public class Graph implements Cloneable{
         source.getAdjacentEdges().add(result);
     }
 
-    public Vertex findOrCreateVertex(final String name) {
+    private Vertex findOrCreateVertex(final String name) {
         Vertex result = null;
         final Optional<Vertex> first = vertices.stream()
                 .filter(item -> Objects.equals(item.getName(), name))
@@ -106,6 +106,10 @@ public class Graph implements Cloneable{
 
         public boolean containsVertex(final Vertex vertex) {
             return vertices[0].name.equals(vertex.name) || vertices[1].name.equals(vertex.name);
+        }
+
+        public Vertex[] getVertices() {
+            return vertices;
         }
 
         @Override
