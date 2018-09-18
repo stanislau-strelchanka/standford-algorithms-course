@@ -14,7 +14,13 @@ public interface UndirectedGraph {
 
     void addEdge(final String vertexA, final String vertexB);
 
-    int countEdges();
+    /**
+     * @return number of edges
+     */
+    int size();
 
-    int countVertices();
+    /**
+     * @return number of vertices
+     */
+    int order();
 }

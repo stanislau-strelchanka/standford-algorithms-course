@@ -37,16 +37,12 @@ public class AdjacencyListGraph implements UndirectedGraph {
     }
 
     @Override
-    public int countEdges() {
-        int totalEdges = 0;
-        for (final List<String> value : adjacencyMap.values()) {
-            totalEdges += value.size();
-        }
-        return totalEdges;
+    public int size() {
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
-    public int countVertices() {
+    public int order() {
         return adjacencyMap.keySet().size();
     }
 }

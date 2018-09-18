@@ -1,6 +1,7 @@
 package org.learn.coursera.divideconquer;
 
-import org.learn.coursera.datastructures.graph.Graph;
+import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
+import org.learn.coursera.datastructures.graph.UndirectedGraph;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -25,8 +26,8 @@ public class TestUtils {
         return lines;
     }
 
-    public static Graph readGraph(final String filePath) {
-        final Graph graph = new Graph();
+    public static UndirectedGraph readGraph(final String filePath) {
+        final UndirectedGraph graph = new AdjacencyListGraph();
 
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
                 TestUtils.class.getClassLoader().getResourceAsStream(filePath),
@@ -37,7 +38,7 @@ public class TestUtils {
                 final String source = verticesAndEdges[0];
 
                 for (int i = 1; i < verticesAndEdges.length; i++) {
-                    graph.createEdge(source, verticesAndEdges[i]);
+                    graph.addEdge(source, verticesAndEdges[i]);
                 }
             }
         } catch (final Exception e) {
