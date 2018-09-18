@@ -35,6 +35,8 @@ public class CountMinCut {
             cutGraph = currentGraph;
         }
 
+        logGraph(cutGraph);
+
         final String vertex = cutGraph.getAllVertices().get(0);
         return cutGraph.getAdjacentVertices(vertex).size();
     }
@@ -62,4 +64,13 @@ public class CountMinCut {
         return new Edge(vertexOne, vertexTwo);
     }
 
+    private void logGraph(final UndirectedGraph graph) {
+        for (final String vertex : graph.getAllVertices()) {
+            for (final String adjacentVertex : graph.getAdjacentVertices(vertex)) {
+                System.out.println(String.format("Edge (%s, %s)", vertex, adjacentVertex));
+            }
+
+            System.out.println();
+        }
+    }
 }
