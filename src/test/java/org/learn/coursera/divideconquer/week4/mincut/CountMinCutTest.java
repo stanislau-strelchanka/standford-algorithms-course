@@ -40,6 +40,8 @@ public class CountMinCutTest {
     @Test
     public void testAssignment() {
         UndirectedGraph graph = TestUtils.readGraph("week4/kargerMinCut.txt");
-        System.out.println(graph);
+        final int count = countMinCut.count(graph);
+        // should be ~ 17
+        System.out.println(count);
     }
 }

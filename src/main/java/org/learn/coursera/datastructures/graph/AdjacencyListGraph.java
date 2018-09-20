@@ -45,4 +45,17 @@ public class AdjacencyListGraph implements UndirectedGraph {
     public int order() {
         return adjacencyMap.keySet().size();
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder stringBuilder = new StringBuilder();
+        for (final String vertex : getAllVertices()) {
+            for (final String adjacentVertex : getAdjacentVertices(vertex)) {
+                stringBuilder.append(String.format("Edge (%s, %s)", vertex, adjacentVertex) + "\n");
+            }
+            stringBuilder.append("\n");
+        }
+
+        return stringBuilder.toString();
+    }
 }

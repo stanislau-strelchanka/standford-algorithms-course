@@ -11,6 +11,21 @@ import java.util.Random;
 public class CountMinCut {
 
     public int count(final UndirectedGraph originalGraph) {
+        final int tries = (int)Math.pow(originalGraph.order(), 1);
+
+        int count = Integer.MAX_VALUE;
+
+        for (int i = 0; i < tries; i++) {
+            int currentCount = countSingleTime(originalGraph);
+            if (count > currentCount) {
+                count = currentCount;
+            }
+        }
+
+        return count;
+    }
+
+    private int countSingleTime(final UndirectedGraph originalGraph) {
         UndirectedGraph cutGraph = copyGraph(originalGraph);
         while (cutGraph.order() > 2) {
             final Edge edge = nextRandomEdge(cutGraph);
@@ -26,7 +41,8 @@ public class CountMinCut {
                 for (final String adjacentVertex : cutGraph.getAdjacentVertices(vertex)) {
                     if (adjacentVertex.equals(vertexToDelete) && !vertex.equals(vertexToShrink)) {
                         currentGraph.addEdge(vertex, vertexToShrink);
-                    } else {
+                        currentGraph.addEdge(vertexToShrink, vertex);
+                    } else if(!adjacentVertex.equals(vertexToDelete) && !vertex.equals(adjacentVertex)){
                         currentGraph.addEdge(vertex, adjacentVertex);
                     }
                 }
@@ -34,8 +50,6 @@ public class CountMinCut {
 
             cutGraph = currentGraph;
         }
-
-        logGraph(cutGraph);
 
         final String vertex = cutGraph.getAllVertices().get(0);
         return cutGraph.getAdjacentVertices(vertex).size();
@@ -55,6 +69,7 @@ public class CountMinCut {
     }
 
     private Edge nextRandomEdge(final UndirectedGraph graph) {
+        //todo need one random call
         final int i = new Random(System.currentTimeMillis()).nextInt(graph.order());
         final String vertexOne = graph.getAllVertices().get(i);
         final List<String> adjacentVertices = graph.getAdjacentVertices(vertexOne);
@@ -62,15 +77,5 @@ public class CountMinCut {
                 .nextInt(adjacentVertices.size()));
 
         return new Edge(vertexOne, vertexTwo);
-    }
-
-    private void logGraph(final UndirectedGraph graph) {
-        for (final String vertex : graph.getAllVertices()) {
-            for (final String adjacentVertex : graph.getAdjacentVertices(vertex)) {
-                System.out.println(String.format("Edge (%s, %s)", vertex, adjacentVertex));
-            }
-
-            System.out.println();
-        }
     }
 }
