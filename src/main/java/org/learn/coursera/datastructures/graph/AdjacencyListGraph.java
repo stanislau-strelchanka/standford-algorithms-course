@@ -3,17 +3,23 @@ package org.learn.coursera.datastructures.graph;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class AdjacencyListGraph implements UndirectedGraph {
 
     private final Map<String, List<String>> adjacencyMap = new HashMap<>();
+    private final Set<String> vertices = new HashSet<>();
 
     @Override
     public void addEdge(final String vertexA, final String vertexB) {
         adjacencyMap.computeIfAbsent(vertexA, key -> new ArrayList<>())
                 .add(vertexB);
+
+        vertices.add(vertexA);
+        vertices.add(vertexB);
     }
 
     @Override
@@ -23,7 +29,7 @@ public class AdjacencyListGraph implements UndirectedGraph {
 
     @Override
     public List<String> getAllVertices() {
-        return new ArrayList<>(adjacencyMap.keySet());
+        return new ArrayList<>(vertices);
     }
 
     @Override
@@ -33,7 +39,7 @@ public class AdjacencyListGraph implements UndirectedGraph {
 
     @Override
     public boolean doesVertexExist(final String vertex) {
-        return adjacencyMap.containsKey(vertex);
+        return getAllVertices().contains(vertex);
     }
 
     @Override
