@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DfsTest {
 
-    private Explorator explorator = new Dfs();
+    private final Explorator explorator = new DfsRecursive();
 
     @Test
     public void test() {
