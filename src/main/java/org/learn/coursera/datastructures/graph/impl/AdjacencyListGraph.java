@@ -1,4 +1,7 @@
-package org.learn.coursera.datastructures.graph;
+package org.learn.coursera.datastructures.graph.impl;
+
+import org.learn.coursera.datastructures.graph.Graph;
+import org.learn.coursera.datastructures.graph.Vertex;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -8,31 +11,36 @@ import java.util.Map;
 
 public class AdjacencyListGraph implements Graph {
 
-    private final Map<String, List<String>> adjacencyMap = new HashMap<>();
+    private final Map<Vertex, List<Vertex>> adjacencyMap = new HashMap<>();
 
     @Override
-    public void addEdge(final String vertexA, final String vertexB) {
+    public void addEdge(final Vertex vertexA, final Vertex vertexB) {
         adjacencyMap.computeIfAbsent(vertexA, key -> new ArrayList<>())
                 .add(vertexB);
     }
 
     @Override
-    public List<String> getAdjacentVertices(final String vertex) {
+    public void addEdge(final String vertexA, final String vertexB) {
+        addEdge(Vertex.getInstance(vertexA), Vertex.getInstance(vertexB));
+    }
+
+    @Override
+    public List<Vertex> getAdjacentVertices(final Vertex vertex) {
         return adjacencyMap.getOrDefault(vertex, Collections.emptyList());
     }
 
     @Override
-    public List<String> getAllVertices() {
+    public List<Vertex> getAllVertices() {
         return new ArrayList<>(adjacencyMap.keySet());
     }
 
     @Override
-    public boolean doesEdgeExist(final String vertexA, final String vertexB) {
+    public boolean doesEdgeExist(final Vertex vertexA, final Vertex vertexB) {
         return getAdjacentVertices(vertexA).contains(vertexB);
     }
 
     @Override
-    public boolean doesVertexExist(final String vertex) {
+    public boolean doesVertexExist(final Vertex vertex) {
         return getAllVertices().contains(vertex);
     }
 
@@ -49,8 +57,8 @@ public class AdjacencyListGraph implements Graph {
     @Override
     public String toString() {
         final StringBuilder stringBuilder = new StringBuilder();
-        for (final String vertex : getAllVertices()) {
-            for (final String adjacentVertex : getAdjacentVertices(vertex)) {
+        for (final Vertex vertex : getAllVertices()) {
+            for (final Vertex adjacentVertex : getAdjacentVertices(vertex)) {
                 stringBuilder.append(String.format("Edge (%s, %s)", vertex, adjacentVertex) + "\n");
             }
             stringBuilder.append("\n");

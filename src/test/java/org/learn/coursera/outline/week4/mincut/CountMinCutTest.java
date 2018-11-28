@@ -1,7 +1,7 @@
 package org.learn.coursera.outline.week4.mincut;
 
 import org.junit.jupiter.api.Test;
-import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
+import org.learn.coursera.datastructures.graph.impl.AdjacencyListGraph;
 import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.outline.TestUtils;
 

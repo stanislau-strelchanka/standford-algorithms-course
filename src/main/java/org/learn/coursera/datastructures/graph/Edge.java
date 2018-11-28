@@ -2,17 +2,17 @@ package org.learn.coursera.datastructures.graph;
 
 public class Edge {
 
-    final String[] verticesPair;
+    final Vertex[] verticesPair;
 
-    public Edge(final String vertex1, final String vertex2) {
-        verticesPair = new String[]{vertex1, vertex2};
+    public Edge(final Vertex vertex1, final Vertex vertex2) {
+        verticesPair = new Vertex[]{vertex1, vertex2};
     }
 
-    public String getFirstVertex() {
+    public Vertex getFirstVertex() {
         return verticesPair[0];
     }
 
-    public String getSecondVertex() {
+    public Vertex getSecondVertex() {
         return verticesPair[1];
     }
 }

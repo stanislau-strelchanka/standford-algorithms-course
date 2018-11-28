@@ -4,13 +4,15 @@ import java.util.List;
 
 public interface Graph {
 
-    boolean doesEdgeExist(final String vertexA, final String vertexB);
+    boolean doesEdgeExist(final Vertex vertexA, final Vertex vertexB);
 
-    boolean doesVertexExist(final String vertex);
+    boolean doesVertexExist(final Vertex vertex);
 
-    List<String> getAdjacentVertices(final String vertex);
+    List<Vertex> getAdjacentVertices(final Vertex vertex);
 
-    List<String> getAllVertices();
+    List<Vertex> getAllVertices();
+
+    void addEdge(final Vertex vertexA, final Vertex vertexB);
 
     void addEdge(final String vertexA, final String vertexB);
 

@@ -1,6 +1,7 @@
 package org.learn.coursera.outline.week4.mincut;
 
-import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
+import org.learn.coursera.datastructures.graph.Vertex;
+import org.learn.coursera.datastructures.graph.impl.AdjacencyListGraph;
 import org.learn.coursera.datastructures.graph.Edge;
 import org.learn.coursera.datastructures.graph.Graph;
 
@@ -29,16 +30,16 @@ public class CountMinCut {
         Graph cutGraph = copyGraph(originalGraph);
         while (cutGraph.order() > 2) {
             final Edge edge = nextRandomEdge(cutGraph);
-            final String vertexToDelete = edge.getFirstVertex();
-            final String vertexToShrink = edge.getSecondVertex();
+            final Vertex vertexToDelete = edge.getFirstVertex();
+            final Vertex vertexToShrink = edge.getSecondVertex();
 
             final Graph currentGraph = new AdjacencyListGraph();
 
-            final List<String> allVertices = new ArrayList<>(cutGraph.getAllVertices());
+            final List<Vertex> allVertices = new ArrayList<>(cutGraph.getAllVertices());
             allVertices.remove(vertexToDelete);
 
-            for (final String vertex : allVertices) {
-                for (final String adjacentVertex : cutGraph.getAdjacentVertices(vertex)) {
+            for (final Vertex vertex : allVertices) {
+                for (final Vertex adjacentVertex : cutGraph.getAdjacentVertices(vertex)) {
                     if (adjacentVertex.equals(vertexToDelete) && !vertex.equals(vertexToShrink)) {
                         currentGraph.addEdge(vertex, vertexToShrink);
                         currentGraph.addEdge(vertexToShrink, vertex);
@@ -51,16 +52,16 @@ public class CountMinCut {
             cutGraph = currentGraph;
         }
 
-        final String vertex = cutGraph.getAllVertices().get(0);
+        final Vertex vertex = cutGraph.getAllVertices().get(0);
         return cutGraph.getAdjacentVertices(vertex).size();
     }
 
     private Graph copyGraph(final Graph graph) {
         final Graph clone = new AdjacencyListGraph();
 
-        for (final String vertex : graph.getAllVertices()) {
-            final List<String> adjacentVertices = graph.getAdjacentVertices(vertex);
-            for (final String adjacentVertex : adjacentVertices) {
+        for (final Vertex vertex : graph.getAllVertices()) {
+            final List<Vertex> adjacentVertices = graph.getAdjacentVertices(vertex);
+            for (final Vertex adjacentVertex : adjacentVertices) {
                 clone.addEdge(vertex, adjacentVertex);
             }
         }
@@ -71,9 +72,9 @@ public class CountMinCut {
     private Edge nextRandomEdge(final Graph graph) {
         //todo need one random call
         final int i = new Random(System.currentTimeMillis()).nextInt(graph.order());
-        final String vertexOne = graph.getAllVertices().get(i);
-        final List<String> adjacentVertices = graph.getAdjacentVertices(vertexOne);
-        final String vertexTwo = adjacentVertices.get(new Random(System.currentTimeMillis())
+        final Vertex vertexOne = graph.getAllVertices().get(i);
+        final List<Vertex> adjacentVertices = graph.getAdjacentVertices(vertexOne);
+        final Vertex vertexTwo = adjacentVertices.get(new Random(System.currentTimeMillis())
                 .nextInt(adjacentVertices.size()));
 
         return new Edge(vertexOne, vertexTwo);
