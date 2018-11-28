@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-public class Dfs {
+public class Dfs implements Explorator {
 
     public List<String> explore(final UndirectedGraph graph, final String vertex) {
         if (graph.doesVertexExist(vertex)) {
