@@ -1,10 +1,10 @@
 package org.learn.coursera.outline.week5.graph.exploration;
 
-import org.learn.coursera.datastructures.graph.UndirectedGraph;
+import org.learn.coursera.datastructures.graph.Graph;
 
 import java.util.List;
 
 public interface Explorator {
 
-    List<String> explore(final UndirectedGraph graph, final String vertex);
+    List<String> explore(final Graph graph, final String vertex);
 }

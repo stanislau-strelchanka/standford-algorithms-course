@@ -2,7 +2,7 @@ package org.learn.coursera.datastructures.graph;
 
 import java.util.List;
 
-public interface UndirectedGraph {
+public interface Graph {
 
     boolean doesEdgeExist(final String vertexA, final String vertexB);
 

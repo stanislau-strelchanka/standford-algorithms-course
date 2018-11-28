@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdjacencyListGraph implements UndirectedGraph {
+public class AdjacencyListGraph implements Graph {
 
     private final Map<String, List<String>> adjacencyMap = new HashMap<>();
 

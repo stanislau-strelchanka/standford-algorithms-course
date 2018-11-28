@@ -2,7 +2,7 @@ package org.learn.coursera.outline.week4.mincut;
 
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
-import org.learn.coursera.datastructures.graph.UndirectedGraph;
+import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.outline.TestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,8 +11,8 @@ public class CountMinCutTest {
 
     private CountMinCut countMinCut = new CountMinCut();
 
-    private UndirectedGraph createDummyGraph() {
-        final UndirectedGraph graph = new AdjacencyListGraph();
+    private Graph createDummyGraph() {
+        final Graph graph = new AdjacencyListGraph();
         graph.addEdge("1", "2");
         graph.addEdge("1", "4");
 
@@ -39,7 +39,7 @@ public class CountMinCutTest {
 
     @Test
     public void testAssignment() {
-        UndirectedGraph graph = TestUtils.readGraph("week4/kargerMinCut.txt");
+        Graph graph = TestUtils.readGraph("week4/kargerMinCut.txt");
         final int count = countMinCut.count(graph);
         // should be ~ 17
         System.out.println(count);

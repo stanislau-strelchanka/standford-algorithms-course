@@ -1,7 +1,7 @@
 package org.learn.coursera.outline;
 
 import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
-import org.learn.coursera.datastructures.graph.UndirectedGraph;
+import org.learn.coursera.datastructures.graph.Graph;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -26,8 +26,8 @@ public class TestUtils {
         return lines;
     }
 
-    public static UndirectedGraph readGraph(final String filePath) {
-        final UndirectedGraph graph = new AdjacencyListGraph();
+    public static Graph readGraph(final String filePath) {
+        final Graph graph = new AdjacencyListGraph();
 
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
                 TestUtils.class.getClassLoader().getResourceAsStream(filePath),

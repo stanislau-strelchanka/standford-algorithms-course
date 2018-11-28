@@ -2,7 +2,7 @@ package org.learn.coursera.outline.week4.mincut;
 
 import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
 import org.learn.coursera.datastructures.graph.Edge;
-import org.learn.coursera.datastructures.graph.UndirectedGraph;
+import org.learn.coursera.datastructures.graph.Graph;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class CountMinCut {
 
-    public int count(final UndirectedGraph originalGraph) {
+    public int count(final Graph originalGraph) {
         final int tries = (int)Math.pow(originalGraph.order(), 1);
 
         int count = Integer.MAX_VALUE;
@@ -25,14 +25,14 @@ public class CountMinCut {
         return count;
     }
 
-    private int countSingleTime(final UndirectedGraph originalGraph) {
-        UndirectedGraph cutGraph = copyGraph(originalGraph);
+    private int countSingleTime(final Graph originalGraph) {
+        Graph cutGraph = copyGraph(originalGraph);
         while (cutGraph.order() > 2) {
             final Edge edge = nextRandomEdge(cutGraph);
             final String vertexToDelete = edge.getFirstVertex();
             final String vertexToShrink = edge.getSecondVertex();
 
-            final UndirectedGraph currentGraph = new AdjacencyListGraph();
+            final Graph currentGraph = new AdjacencyListGraph();
 
             final List<String> allVertices = new ArrayList<>(cutGraph.getAllVertices());
             allVertices.remove(vertexToDelete);
@@ -55,8 +55,8 @@ public class CountMinCut {
         return cutGraph.getAdjacentVertices(vertex).size();
     }
 
-    private UndirectedGraph copyGraph(final UndirectedGraph graph) {
-        final UndirectedGraph clone = new AdjacencyListGraph();
+    private Graph copyGraph(final Graph graph) {
+        final Graph clone = new AdjacencyListGraph();
 
         for (final String vertex : graph.getAllVertices()) {
             final List<String> adjacentVertices = graph.getAdjacentVertices(vertex);
@@ -68,7 +68,7 @@ public class CountMinCut {
         return clone;
     }
 
-    private Edge nextRandomEdge(final UndirectedGraph graph) {
+    private Edge nextRandomEdge(final Graph graph) {
         //todo need one random call
         final int i = new Random(System.currentTimeMillis()).nextInt(graph.order());
         final String vertexOne = graph.getAllVertices().get(i);

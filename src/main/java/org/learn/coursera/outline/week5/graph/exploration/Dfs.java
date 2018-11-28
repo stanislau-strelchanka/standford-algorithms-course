@@ -1,6 +1,6 @@
 package org.learn.coursera.outline.week5.graph.exploration;
 
-import org.learn.coursera.datastructures.graph.UndirectedGraph;
+import org.learn.coursera.datastructures.graph.Graph;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -10,7 +10,7 @@ import java.util.Stack;
 
 public class Dfs implements Explorator {
 
-    public List<String> explore(final UndirectedGraph graph, final String vertex) {
+    public List<String> explore(final Graph graph, final String vertex) {
         if (graph.doesVertexExist(vertex)) {
             return exploreInternal(graph, vertex);
         } else {
@@ -18,7 +18,7 @@ public class Dfs implements Explorator {
         }
     }
 
-    private List<String> exploreInternal(final UndirectedGraph graph, final String s) {
+    private List<String> exploreInternal(final Graph graph, final String s) {
         final Stack<String> nextVertexToExplore = new Stack<>();
         final Set<String> exploredVertices = new LinkedHashSet<>();
 

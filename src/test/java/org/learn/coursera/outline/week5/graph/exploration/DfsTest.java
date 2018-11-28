@@ -1,8 +1,7 @@
 package org.learn.coursera.outline.week5.graph.exploration;
 
 import org.junit.jupiter.api.Test;
-import org.learn.coursera.datastructures.graph.AdjacencyListGraph;
-import org.learn.coursera.datastructures.graph.UndirectedGraph;
+import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.outline.TestUtils;
 
 import java.util.Arrays;
@@ -16,7 +15,7 @@ public class DfsTest {
 
     @Test
     public void test() {
-        UndirectedGraph graph = TestUtils.readGraph("week5/graph/exploration/test.txt");
+        Graph graph = TestUtils.readGraph("week5/graph/exploration/test.txt");
 
         final List<String> exploredVertices = explorator.explore(graph, "s");
         System.out.println(exploredVertices);
@@ -25,7 +24,7 @@ public class DfsTest {
 
     @Test
     public void test2() {
-        UndirectedGraph graph = TestUtils.readGraph("week5/graph/exploration/test2.txt");
+        Graph graph = TestUtils.readGraph("week5/graph/exploration/test2.txt");
 
         final List<String> exploredFromA = explorator.explore(graph, "a");
         final List<String> exploredFromB = explorator.explore(graph, "b");
