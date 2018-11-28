@@ -1,7 +1,6 @@
 package org.learn.coursera.datastructures.graph.impl;
 
 import org.learn.coursera.datastructures.graph.Graph;
-import org.learn.coursera.datastructures.graph.Vertex;
 
 import java.util.ArrayList;
 import java.util.Collections;

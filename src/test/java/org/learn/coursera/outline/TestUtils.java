@@ -1,6 +1,6 @@
 package org.learn.coursera.outline;
 
-import org.learn.coursera.datastructures.graph.Vertex;
+import org.learn.coursera.datastructures.graph.impl.Vertex;
 import org.learn.coursera.datastructures.graph.impl.AdjacencyListGraph;
 import org.learn.coursera.datastructures.graph.Graph;
 

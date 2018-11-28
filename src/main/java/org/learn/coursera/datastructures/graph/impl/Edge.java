@@ -1,4 +1,4 @@
-package org.learn.coursera.datastructures.graph;
+package org.learn.coursera.datastructures.graph.impl;
 
 public class Edge {
 

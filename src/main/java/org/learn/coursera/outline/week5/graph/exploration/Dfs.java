@@ -1,7 +1,7 @@
 package org.learn.coursera.outline.week5.graph.exploration;
 
 import org.learn.coursera.datastructures.graph.Graph;
-import org.learn.coursera.datastructures.graph.Vertex;
+import org.learn.coursera.datastructures.graph.impl.Vertex;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

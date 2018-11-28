@@ -2,7 +2,7 @@ package org.learn.coursera.outline.week5.graph.exploration;
 
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.datastructures.graph.Graph;
-import org.learn.coursera.datastructures.graph.Vertex;
+import org.learn.coursera.datastructures.graph.impl.Vertex;
 import org.learn.coursera.outline.TestUtils;
 
 import java.util.HashSet;

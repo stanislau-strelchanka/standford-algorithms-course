@@ -1,4 +1,4 @@
-package org.learn.coursera.datastructures.graph;
+package org.learn.coursera.datastructures.graph.impl;
 
 import java.util.Objects;
 

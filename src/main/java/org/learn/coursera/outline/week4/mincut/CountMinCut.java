@@ -1,8 +1,8 @@
 package org.learn.coursera.outline.week4.mincut;
 
-import org.learn.coursera.datastructures.graph.Vertex;
+import org.learn.coursera.datastructures.graph.impl.Vertex;
 import org.learn.coursera.datastructures.graph.impl.AdjacencyListGraph;
-import org.learn.coursera.datastructures.graph.Edge;
+import org.learn.coursera.datastructures.graph.impl.Edge;
 import org.learn.coursera.datastructures.graph.Graph;
 
 import java.util.ArrayList;

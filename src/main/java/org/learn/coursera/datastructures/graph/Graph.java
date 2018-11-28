@@ -1,5 +1,7 @@
 package org.learn.coursera.datastructures.graph;
 
+import org.learn.coursera.datastructures.graph.impl.Vertex;
+
 import java.util.List;
 
 public interface Graph {
