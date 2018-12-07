@@ -10,7 +10,9 @@ public interface Graph {
 
     boolean doesVertexExist(final Vertex vertex);
 
-    List<Vertex> getAdjacentVertices(final Vertex vertex);
+    List<Vertex> getOutgoingVertices(final Vertex vertex);
+
+    List<Vertex> getIncomingVertices(final Vertex vertex);
 
     List<Vertex> getAllVertices();
 

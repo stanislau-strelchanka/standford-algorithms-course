@@ -34,7 +34,7 @@ public class DfsRecursive implements Explorator {
 
         public InternalRecursiveDfs explore(final Vertex v) {
             exploredVertices.add(v);
-            for (final Vertex w : graph.getAdjacentVertices(v)) {
+            for (final Vertex w : graph.getOutgoingVertices(v)) {
                 if (!exploredVertices.contains(w)) {
                     explore(w);
                 }

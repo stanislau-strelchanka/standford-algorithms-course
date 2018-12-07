@@ -28,7 +28,7 @@ public class Dfs implements Explorator {
         while (!nextVertexToExplore.isEmpty()) {
             final Vertex v = nextVertexToExplore.pop();
             exploredVertices.add(v);
-            for (final Vertex w : graph.getAdjacentVertices(v)) {
+            for (final Vertex w : graph.getOutgoingVertices(v)) {
                 if (!exploredVertices.contains(w)) {
                     nextVertexToExplore.push(w);
                 }

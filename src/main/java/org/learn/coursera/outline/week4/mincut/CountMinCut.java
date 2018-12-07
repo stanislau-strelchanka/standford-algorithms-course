@@ -39,7 +39,7 @@ public class CountMinCut {
             allVertices.remove(vertexToDelete);
 
             for (final Vertex vertex : allVertices) {
-                for (final Vertex adjacentVertex : cutGraph.getAdjacentVertices(vertex)) {
+                for (final Vertex adjacentVertex : cutGraph.getOutgoingVertices(vertex)) {
                     if (adjacentVertex.equals(vertexToDelete) && !vertex.equals(vertexToShrink)) {
                         currentGraph.addEdge(vertex, vertexToShrink);
                         currentGraph.addEdge(vertexToShrink, vertex);
@@ -53,14 +53,14 @@ public class CountMinCut {
         }
 
         final Vertex vertex = cutGraph.getAllVertices().get(0);
-        return cutGraph.getAdjacentVertices(vertex).size();
+        return cutGraph.getOutgoingVertices(vertex).size();
     }
 
     private Graph copyGraph(final Graph graph) {
         final Graph clone = new AdjacencyListGraph();
 
         for (final Vertex vertex : graph.getAllVertices()) {
-            final List<Vertex> adjacentVertices = graph.getAdjacentVertices(vertex);
+            final List<Vertex> adjacentVertices = graph.getOutgoingVertices(vertex);
             for (final Vertex adjacentVertex : adjacentVertices) {
                 clone.addEdge(vertex, adjacentVertex);
             }
@@ -73,7 +73,7 @@ public class CountMinCut {
         //todo need one random call
         final int i = new Random(System.currentTimeMillis()).nextInt(graph.order());
         final Vertex vertexOne = graph.getAllVertices().get(i);
-        final List<Vertex> adjacentVertices = graph.getAdjacentVertices(vertexOne);
+        final List<Vertex> adjacentVertices = graph.getOutgoingVertices(vertexOne);
         final Vertex vertexTwo = adjacentVertices.get(new Random(System.currentTimeMillis())
                 .nextInt(adjacentVertices.size()));
 
