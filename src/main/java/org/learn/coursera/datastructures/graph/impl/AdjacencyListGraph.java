@@ -2,16 +2,13 @@ package org.learn.coursera.datastructures.graph.impl;
 
 import org.learn.coursera.datastructures.graph.Graph;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AdjacencyListGraph implements Graph {
 
     private final Map<Vertex, List<Vertex>> outgoingVertices = new HashMap<>();
     private final Map<Vertex, List<Vertex>> incomingVertices = new HashMap<>();
+    private final HashSet<Vertex> vertices = new HashSet<>();
 
     @Override
     public void addEdge(final Vertex vertexA, final Vertex vertexB) {
@@ -19,6 +16,9 @@ public class AdjacencyListGraph implements Graph {
                 .add(vertexB);
         incomingVertices.computeIfAbsent(vertexB, key -> new ArrayList<>())
                 .add(vertexA);
+
+        vertices.add(vertexA);
+        vertices.add(vertexB);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class AdjacencyListGraph implements Graph {
 
     @Override
     public int order() {
-        return outgoingVertices.keySet().size();
+        return vertices.size();
     }
 
     @Override
