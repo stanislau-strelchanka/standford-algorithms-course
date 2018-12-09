@@ -1,4 +1,4 @@
-package org.learn.coursera.outline.week5.graph;
+package org.learn.coursera.outline.week5.graph.sort;
 
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.datastructures.graph.Graph;
@@ -15,7 +15,7 @@ public class TopologicalSortTest {
 
     @Test
     public void test() {
-        Graph graph = TestUtils.readGraph("week5/graph/test.txt");
+        Graph graph = TestUtils.readGraph("week5/graph/sort/test.txt");
         Map<Vertex, Integer> result = topoSort.sort(graph);
 
         assertEquals(result.get(Vertex.getInstance("s")), Integer.valueOf(1));
