@@ -2,7 +2,7 @@ package org.learn.coursera.outline.week5.graph.scc;
 
 import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.datastructures.graph.impl.ReversedGraph;
-import org.learn.coursera.outline.week5.graph.TopologicalSort;
+import org.learn.coursera.outline.week5.graph.sort.TopologicalSort;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
 
 import java.util.*;
@@ -19,10 +19,7 @@ public class DirectedScc {
         int currentScc = 1;
         for (final Vertex vertex : properlyOrderedVertices) {
             if (!isExplored(vertex)) {
-                final List<Vertex> vertices = new ArrayList<>();
-                vertices.add(vertex);
-
-                final List<Vertex> explored = explore(graph, vertex, vertices);
+                final List<Vertex> explored = explore(graph, vertex);
                 result.put(currentScc++, explored);
             }
         }
@@ -36,6 +33,27 @@ public class DirectedScc {
             if (!isExplored(outgoingVertex)) {
                 vertices.add(outgoingVertex);
                 return explore(graph, outgoingVertex, vertices);
+            }
+        }
+
+        return vertices;
+    }
+
+    private List<Vertex> explore(final Graph graph, final Vertex vertex) {
+        final List<Vertex> vertices = new ArrayList<>();
+        final Stack<Vertex> nextVertexToExplore = new Stack<>();
+
+        nextVertexToExplore.push(vertex);
+
+        while (!nextVertexToExplore.isEmpty()) {
+            final Vertex v = nextVertexToExplore.pop();
+            explored.add(v);
+            vertices.add(v);
+
+            for (final Vertex w : graph.getOutgoingVertices(v)) {
+                if (!isExplored(w)) {
+                    nextVertexToExplore.push(w);
+                }
             }
         }
 
