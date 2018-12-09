@@ -17,6 +17,8 @@ import java.util.zip.GZIPInputStream;
 
 public class TestUtils {
 
+    private final static String DEFAULT_SEPARATOR = "\t";
+
     public static List<Integer> readFileLines(final String filePath) {
         final List<Integer> lines = new ArrayList<>(100_000);
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -34,22 +36,22 @@ public class TestUtils {
 
     public static Graph readGraph(final String filePath) {
         final InputStream is = getFileStream(filePath);
-        return getGraphFromStream(is);
+        return getGraphFromStream(is, DEFAULT_SEPARATOR);
     }
 
     public static Graph readCompressedGraph(final String filePath) {
         final InputStream is = getCompressedFileStream(filePath);
-        return getGraphFromStream(is);
+        return getGraphFromStream(is, " ");
     }
 
-    private static Graph getGraphFromStream(InputStream is) {
+    private static Graph getGraphFromStream(final InputStream is, final String separator) {
         final Graph graph = new AdjacencyListGraph();
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
                 is,
                 StandardCharsets.UTF_8))) {
             String line = "";
             while ((line = reader.readLine()) != null) {
-                final List<Vertex> verticesAndEdges = Arrays.stream(line.split("\t"))
+                final List<Vertex> verticesAndEdges = Arrays.stream(line.split(separator))
                         .map(Vertex::getInstance)
                         .collect(Collectors.toList());
                 final Vertex source = verticesAndEdges.get(0);
@@ -59,8 +61,7 @@ public class TestUtils {
                 }
             }
         } catch (final Exception e) {
-
-
+            throw new RuntimeException(e);
         }
 
         return graph;
