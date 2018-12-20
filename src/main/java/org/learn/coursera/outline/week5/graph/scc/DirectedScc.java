@@ -2,15 +2,16 @@ package org.learn.coursera.outline.week5.graph.scc;
 
 import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.datastructures.graph.impl.ReversedGraph;
-import org.learn.coursera.outline.week5.graph.sort.TopologicalSort;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
+import org.learn.coursera.outline.week5.graph.sort.RecursiveTopologicalSort;
+import org.learn.coursera.outline.week5.graph.sort.TopologicalSort;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class DirectedScc {
 
-    private final TopologicalSort topoSort = new TopologicalSort();
+    private final TopologicalSort topoSort = new RecursiveTopologicalSort();
     private final Set<Vertex> explored = new HashSet<>();
 
     public Map<Integer, List<Vertex>> find(final Graph graph) {
