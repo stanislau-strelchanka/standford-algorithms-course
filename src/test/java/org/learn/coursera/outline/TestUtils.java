@@ -35,8 +35,12 @@ public class TestUtils {
     }
 
     public static Graph readGraph(final String filePath) {
+        return readGraph(filePath, DEFAULT_SEPARATOR);
+    }
+
+    public static Graph readGraph(final String filePath, final String separator) {
         final InputStream is = getFileStream(filePath);
-        return getGraphFromStream(is, DEFAULT_SEPARATOR);
+        return getGraphFromStream(is, separator);
     }
 
     public static Graph readCompressedGraph(final String filePath) {
