@@ -37,5 +37,4 @@ public class Bfs implements Explorator {
 
         return new ArrayList<>(exploredVertices);
     }
-
 }

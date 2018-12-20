@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TopologicalSortTest {
 
-    private final TopologicalSort topoSort = new TopologicalSort();
+    private final TopologicalSort topoSort = new RecursiveTopologicalSort();
 
     @Test
     public void test() {
