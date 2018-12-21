@@ -38,7 +38,7 @@ public class AdjacencyListGraph implements Graph {
 
     @Override
     public List<Vertex> getAllVertices() {
-        return new ArrayList<>(outgoingVertices.keySet());
+        return new ArrayList<>(vertices);
     }
 
     @Override
