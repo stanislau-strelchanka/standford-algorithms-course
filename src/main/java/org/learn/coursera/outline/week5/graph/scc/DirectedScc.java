@@ -11,16 +11,17 @@ import java.util.stream.Collectors;
 
 public class DirectedScc {
 
+    // todo implement iterative topo sort to avoid stack increase
     private final TopologicalSort topoSort = new RecursiveTopologicalSort();
     private final Set<Vertex> explored = new HashSet<>();
 
-    public Map<Integer, List<Vertex>> find(final Graph graph) {
-        final Map<Integer, List<Vertex>> result = new HashMap<>();
+    public Map<Integer, Set<Vertex>> find(final Graph graph) {
+        final Map<Integer, Set<Vertex>> result = new HashMap<>();
         final List<Vertex> properlyOrderedVertices = getProperlyOrderedVertices(graph);
         int currentScc = 1;
         for (final Vertex vertex : properlyOrderedVertices) {
             if (!isExplored(vertex)) {
-                final List<Vertex> explored = explore(graph, vertex);
+                final Set<Vertex> explored = explore(graph, vertex);
                 result.put(currentScc++, explored);
             }
         }
@@ -40,8 +41,8 @@ public class DirectedScc {
         return vertices;
     }
 
-    private List<Vertex> explore(final Graph graph, final Vertex vertex) {
-        final List<Vertex> vertices = new ArrayList<>();
+    private Set<Vertex> explore(final Graph graph, final Vertex vertex) {
+        final Set<Vertex> vertices = new HashSet<>();
         final Stack<Vertex> nextVertexToExplore = new Stack<>();
 
         nextVertexToExplore.push(vertex);
