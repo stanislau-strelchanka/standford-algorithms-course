@@ -5,6 +5,7 @@ import org.learn.coursera.datastructures.graph.impl.Vertex;
 
 import java.util.*;
 
+// doesn't work with directed scc
 public class IterativeTopologicalSort implements TopologicalSort {
 
     public Map<Vertex, Integer> sort(Graph graph) {
