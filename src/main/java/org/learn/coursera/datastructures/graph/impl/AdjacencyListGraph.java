@@ -80,7 +80,9 @@ public class AdjacencyListGraph implements Graph {
         final StringBuilder stringBuilder = new StringBuilder();
         for (final Vertex vertex : getAllVertices()) {
             for (final Vertex adjacentVertex : getOutgoingVertices(vertex)) {
-                stringBuilder.append(String.format("Edge (%s, %s)", vertex, adjacentVertex) + "\n");
+                stringBuilder.append(String.format("Edge (%s, %s) and hop cost (%d)", vertex, adjacentVertex,
+                        edgeHopCost(new Edge(vertex, adjacentVertex))))
+                        .append("\n");
             }
         }
 
