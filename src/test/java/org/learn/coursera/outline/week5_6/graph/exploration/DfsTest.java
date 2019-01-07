@@ -1,4 +1,4 @@
-package org.learn.coursera.outline.week5.graph.exploration;
+package org.learn.coursera.outline.week5_6.graph.exploration;
 
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.datastructures.graph.Graph;
@@ -19,7 +19,7 @@ public class DfsTest {
 
     @Test
     public void test() {
-        final Graph graph = TestUtils.readGraph("week5/graph/exploration/test.txt");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/exploration/test.txt");
 
         final List<Vertex> exploredVertices = explorator.explore(graph, Vertex.getInstance("s"));
         System.out.println(exploredVertices);
@@ -29,7 +29,7 @@ public class DfsTest {
 
     @Test
     public void test2() {
-        Graph graph = TestUtils.readGraph("week5/graph/exploration/test2.txt");
+        Graph graph = TestUtils.readGraph("week5_6/graph/exploration/test2.txt");
 
         final List<Vertex> exploredFromA = explorator.explore(graph, Vertex.getInstance("a"));
         final List<Vertex> exploredFromB = explorator.explore(graph, Vertex.getInstance("b"));

@@ -1,10 +1,10 @@
-package org.learn.coursera.outline.week5.graph.scc;
+package org.learn.coursera.outline.week5_6.graph.scc;
 
 import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.datastructures.graph.impl.ReversedGraph;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
-import org.learn.coursera.outline.week5.graph.sort.RecursiveTopologicalSort;
-import org.learn.coursera.outline.week5.graph.sort.TopologicalSort;
+import org.learn.coursera.outline.week5_6.graph.sort.RecursiveTopologicalSort;
+import org.learn.coursera.outline.week5_6.graph.sort.TopologicalSort;
 
 import java.util.*;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package org.learn.coursera.outline.week5.graph.scc;
+package org.learn.coursera.outline.week5_6.graph.scc;
 
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.datastructures.graph.Graph;
@@ -18,7 +18,7 @@ public class DirectedSccTest {
 
     @Test
     public void test() {
-        final Graph graph = TestUtils.readGraph("week5/graph/scc/test.txt");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test.txt");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -27,7 +27,7 @@ public class DirectedSccTest {
 
     @Test
     public void test1() {
-        final Graph graph = TestUtils.readGraph("week5/graph/scc/test1.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test1.txt", " ");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -36,7 +36,7 @@ public class DirectedSccTest {
 
     @Test
     public void test2() {
-        final Graph graph = TestUtils.readGraph("week5/graph/scc/test2.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test2.txt", " ");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -45,7 +45,7 @@ public class DirectedSccTest {
 
     @Test
     public void test3() {
-        final Graph graph = TestUtils.readGraph("week5/graph/scc/test3.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test3.txt", " ");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -54,7 +54,7 @@ public class DirectedSccTest {
 
     @Test
     public void test4() {
-        final Graph graph = TestUtils.readGraph("week5/graph/scc/test4.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test4.txt", " ");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -63,7 +63,7 @@ public class DirectedSccTest {
 
     @Test
     public void test5() {
-        final Graph graph = TestUtils.readGraph("week5/graph/scc/test5.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test5.txt", " ");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -71,7 +71,7 @@ public class DirectedSccTest {
     }
 
     public void testAssignment() {
-        final Graph graph = TestUtils.readCompressedGraph("week5/graph/scc/scc_asignment.gz");
+        final Graph graph = TestUtils.readCompressedGraph("week5_6/graph/scc/scc_asignment.gz");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty(), "There should SCCs in a graph");

@@ -1,4 +1,4 @@
-package org.learn.coursera.outline.week5.graph.exploration;
+package org.learn.coursera.outline.week5_6.graph.exploration;
 
 import org.learn.coursera.datastructures.graph.Graph;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
