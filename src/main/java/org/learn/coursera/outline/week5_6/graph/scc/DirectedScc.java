@@ -13,10 +13,11 @@ public class DirectedScc {
 
     // todo implement iterative topo sort to avoid stack increase
     private final TopologicalSort topoSort = new RecursiveTopologicalSort();
-    private final Set<Vertex> explored = new HashSet<>();
+    private Set<Vertex> explored;
 
     public Map<Integer, Set<Vertex>> find(final Graph graph) {
         final Map<Integer, Set<Vertex>> result = new HashMap<>();
+        explored = new HashSet<>();
         final List<Vertex> properlyOrderedVertices = getProperlyOrderedVertices(graph);
         int currentScc = 1;
         for (final Vertex vertex : properlyOrderedVertices) {
