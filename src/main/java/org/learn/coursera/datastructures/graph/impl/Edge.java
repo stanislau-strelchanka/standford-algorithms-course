@@ -8,11 +8,11 @@ public class Edge {
         verticesPair = new Vertex[]{vertex1, vertex2};
     }
 
-    public Vertex getFirstVertex() {
+    public Vertex getTail() {
         return verticesPair[0];
     }
 
-    public Vertex getSecondVertex() {
+    public Vertex getHead() {
         return verticesPair[1];
     }
 }

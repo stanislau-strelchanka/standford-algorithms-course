@@ -30,8 +30,8 @@ public class CountMinCut {
         Graph cutGraph = copyGraph(originalGraph);
         while (cutGraph.order() > 2) {
             final Edge edge = nextRandomEdge(cutGraph);
-            final Vertex vertexToDelete = edge.getFirstVertex();
-            final Vertex vertexToShrink = edge.getSecondVertex();
+            final Vertex vertexToDelete = edge.getTail();
+            final Vertex vertexToShrink = edge.getHead();
 
             final Graph currentGraph = new AdjacencyListGraph();
 
