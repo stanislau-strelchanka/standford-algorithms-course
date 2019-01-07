@@ -1,6 +1,5 @@
 package org.learn.coursera.outline;
 
-import org.junit.platform.commons.util.StringUtils;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
 import org.learn.coursera.datastructures.graph.impl.AdjacencyListGraph;
 import org.learn.coursera.datastructures.graph.Graph;
@@ -66,12 +65,12 @@ public class TestUtils {
 
         for (int i = 1; i < edgesAndHopCost.size(); i++) {
             final String[] tailAndCost = edgesAndHopCost.get(i).split(",");
-            graph.addEdge(source, Vertex.getInstance(tailAndCost[0]), extractCost(tailAndCost[1]));
+            graph.addEdge(source, Vertex.getInstance(tailAndCost[0]), extractCost(tailAndCost.length > 1 ? tailAndCost[1] : null));
         }
     }
 
     private static int extractCost(final String cost) {
-        return cost == null || cost.isEmpty() ? 0 : Integer.valueOf(cost);
+        return cost == null || cost.isEmpty() ? 1 : Integer.valueOf(cost);
     }
 
     private static InputStream getFileStream(String filePath) {
