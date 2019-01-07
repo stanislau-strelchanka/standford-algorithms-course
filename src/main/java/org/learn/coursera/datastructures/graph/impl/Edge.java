@@ -1,18 +1,38 @@
 package org.learn.coursera.datastructures.graph.impl;
 
+import java.util.Objects;
+
 public class Edge {
 
-    final Vertex[] verticesPair;
+    private final Vertex tail;
 
-    public Edge(final Vertex vertex1, final Vertex vertex2) {
-        verticesPair = new Vertex[]{vertex1, vertex2};
+    private final Vertex head;
+
+    public Edge(final Vertex tail, final Vertex head) {
+        this.tail = tail;
+        this.head = head;
     }
 
     public Vertex getTail() {
-        return verticesPair[0];
+        return tail;
     }
 
     public Vertex getHead() {
-        return verticesPair[1];
+        return head;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Edge edge = (Edge) o;
+        return Objects.equals(tail, edge.tail) &&
+                Objects.equals(head, edge.head);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tail, head);
     }
 }
