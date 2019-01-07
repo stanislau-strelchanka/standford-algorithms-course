@@ -17,8 +17,6 @@ import java.util.zip.GZIPInputStream;
 
 public class TestUtils {
 
-    private final static String DEFAULT_SEPARATOR = "\t";
-
     public static List<Integer> readFileLines(final String filePath) {
         final List<Integer> lines = new ArrayList<>(100_000);
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -35,40 +33,40 @@ public class TestUtils {
     }
 
     public static Graph readGraph(final String filePath) {
-        return readGraph(filePath, DEFAULT_SEPARATOR);
-    }
-
-    public static Graph readGraph(final String filePath, final String separator) {
         final InputStream is = getFileStream(filePath);
-        return getGraphFromStream(is, separator);
+        return getGraphFromStream(is);
     }
 
     public static Graph readCompressedGraph(final String filePath) {
         final InputStream is = getCompressedFileStream(filePath);
-        return getGraphFromStream(is, " ");
+        return getGraphFromStream(is);
     }
 
-    private static Graph getGraphFromStream(final InputStream is, final String separator) {
+    private static Graph getGraphFromStream(final InputStream is) {
         final Graph graph = new AdjacencyListGraph();
         try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
                 is,
                 StandardCharsets.UTF_8))) {
             String line = "";
             while ((line = reader.readLine()) != null) {
-                final List<Vertex> verticesAndEdges = Arrays.stream(line.split(separator))
-                        .map(Vertex::getInstance)
-                        .collect(Collectors.toList());
-                final Vertex source = verticesAndEdges.get(0);
-
-                for (int i = 1; i < verticesAndEdges.size(); i++) {
-                    graph.addEdge(source, verticesAndEdges.get(i));
-                }
+                addEdgeToGraph(graph, line);
             }
         } catch (final Exception e) {
             throw new RuntimeException(e);
         }
 
         return graph;
+    }
+
+    private static void addEdgeToGraph(final Graph graph, final String line) {
+        final List<Vertex> verticesAndEdges = Arrays.stream(line.split("\\s+"))
+                .map(Vertex::getInstance)
+                .collect(Collectors.toList());
+        final Vertex source = verticesAndEdges.get(0);
+
+        for (int i = 1; i < verticesAndEdges.size(); i++) {
+            graph.addEdge(source, verticesAndEdges.get(i));
+        }
     }
 
     private static InputStream getFileStream(String filePath) {

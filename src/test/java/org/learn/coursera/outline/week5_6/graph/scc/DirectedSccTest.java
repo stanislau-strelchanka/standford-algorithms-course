@@ -27,7 +27,7 @@ public class DirectedSccTest {
 
     @Test
     public void test1() {
-        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test1.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test1.txt");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -36,7 +36,7 @@ public class DirectedSccTest {
 
     @Test
     public void test2() {
-        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test2.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test2.txt");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -45,7 +45,8 @@ public class DirectedSccTest {
 
     @Test
     public void test3() {
-        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test3.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test3.txt");
+        System.out.println(graph);
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -54,7 +55,7 @@ public class DirectedSccTest {
 
     @Test
     public void test4() {
-        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test4.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test4.txt");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
@@ -63,14 +64,14 @@ public class DirectedSccTest {
 
     @Test
     public void test5() {
-        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test5.txt", " ");
+        final Graph graph = TestUtils.readGraph("week5_6/graph/scc/test5.txt");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 
         assertFalse(result.isEmpty());
         assertEquals("6,3,2,1,0", toStringResult(result));
     }
 
-    public void testAssignment() {
+    public void assignment() {
         final Graph graph = TestUtils.readCompressedGraph("week5_6/graph/scc/scc_asignment.gz");
         final Map<Integer, Set<Vertex>> result = directedScc.find(graph);
 

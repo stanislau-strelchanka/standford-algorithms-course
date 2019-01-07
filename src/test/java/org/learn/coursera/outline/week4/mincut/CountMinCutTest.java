@@ -37,8 +37,7 @@ public class CountMinCutTest {
         assertEquals(2, count);
     }
 
-    @Test
-    public void testAssignment() {
+    public void assignment() {
         Graph graph = TestUtils.readGraph("week4/kargerMinCut.txt");
         final int count = countMinCut.count(graph);
         // should be ~ 17
