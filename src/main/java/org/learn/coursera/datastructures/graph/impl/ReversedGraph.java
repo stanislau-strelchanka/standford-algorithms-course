@@ -18,8 +18,19 @@ public class ReversedGraph implements Graph {
     }
 
     @Override
+    public void addEdge(Vertex vertexA, Vertex vertexB, int hopCost) {
+        throw new RuntimeException("Not supported");
+    }
+
+    @Override
     public void addEdge(String vertexA, String vertexB) {
         addEdge(Vertex.getInstance(vertexA), Vertex.getInstance(vertexB));
+    }
+
+    @Override
+    public Integer edgeHopCost(Edge edge) {
+        Edge originalGraphEdge = new Edge(edge.getHead(), edge.getHead());
+        return originalGraph.edgeHopCost(originalGraphEdge);
     }
 
     @Override

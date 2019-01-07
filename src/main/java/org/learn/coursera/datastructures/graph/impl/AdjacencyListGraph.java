@@ -8,14 +8,23 @@ public class AdjacencyListGraph implements Graph {
 
     private final Map<Vertex, List<Vertex>> outgoingVertices = new HashMap<>();
     private final Map<Vertex, List<Vertex>> incomingVertices = new HashMap<>();
+    private final Map<Edge, Integer> edgeHopCosts = new HashMap<>();
+
     private final HashSet<Vertex> vertices = new HashSet<>();
 
     @Override
     public void addEdge(final Vertex vertexA, final Vertex vertexB) {
+        addEdge(vertexA, vertexB, 1);
+    }
+
+    @Override
+    public void addEdge(final Vertex vertexA, final Vertex vertexB, final int hopCost) {
         outgoingVertices.computeIfAbsent(vertexA, key -> new ArrayList<>())
                 .add(vertexB);
         incomingVertices.computeIfAbsent(vertexB, key -> new ArrayList<>())
                 .add(vertexA);
+
+        edgeHopCosts.put(new Edge(vertexA, vertexB), hopCost);
 
         vertices.add(vertexA);
         vertices.add(vertexB);
@@ -24,6 +33,11 @@ public class AdjacencyListGraph implements Graph {
     @Override
     public void addEdge(final String vertexA, final String vertexB) {
         addEdge(Vertex.getInstance(vertexA), Vertex.getInstance(vertexB));
+    }
+
+    @Override
+    public Integer edgeHopCost(Edge edge) {
+        return edgeHopCosts.get(edge);
     }
 
     @Override
@@ -68,7 +82,6 @@ public class AdjacencyListGraph implements Graph {
             for (final Vertex adjacentVertex : getOutgoingVertices(vertex)) {
                 stringBuilder.append(String.format("Edge (%s, %s)", vertex, adjacentVertex) + "\n");
             }
-            stringBuilder.append("\n");
         }
 
         return stringBuilder.toString();

@@ -1,5 +1,6 @@
 package org.learn.coursera.datastructures.graph;
 
+import org.learn.coursera.datastructures.graph.impl.Edge;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
 
 import java.util.List;
@@ -18,7 +19,11 @@ public interface Graph {
 
     void addEdge(final Vertex vertexA, final Vertex vertexB);
 
+    void addEdge(final Vertex vertexA, final Vertex vertexB, final int hopCost);
+
     void addEdge(final String vertexA, final String vertexB);
+
+    Integer edgeHopCost(final Edge edge);
 
     /**
      * @return number of edges
