@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface ShortestPath {
 
-    List<VertexAndHopCost> find(final Graph graph, final Vertex source, final Vertex dest);
+    Integer find(final Graph graph, final Vertex source, final Vertex dest);
 }
