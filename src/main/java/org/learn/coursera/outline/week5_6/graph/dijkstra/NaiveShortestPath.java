@@ -5,61 +5,79 @@ import org.learn.coursera.datastructures.graph.impl.Edge;
 import org.learn.coursera.datastructures.graph.impl.Vertex;
 
 import java.util.*;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.Map.Entry;
 
 public class NaiveShortestPath implements ShortestPath {
 
     @Override
     public Integer find(Graph graph, Vertex source, Vertex dest) {
-        return new Internal(graph, source, dest).find();
+        return new ShortestPathFinder(graph, source, dest).find();
     }
 
-    private static class Internal {
+    private static class ShortestPathFinder {
 
-        private final Map<Vertex, Integer> dist;
+        private final Map<Vertex, Integer> shortestDistances;
         private final Set<Vertex> explored;
 
         private final Graph graph;
         private final Vertex dest;
 
-        Internal(final Graph graph, final Vertex source, final Vertex dest) {
-            dist = new HashMap<>();
+        ShortestPathFinder(final Graph graph, final Vertex s, final Vertex dest) {
+            shortestDistances = new HashMap<>();
             explored = new HashSet<>();
 
-            dist.put(source, 0);
-            explored.add(source);
+            shortestDistances.put(s, 0);
+            explored.add(s);
 
             this.dest = dest;
             this.graph = graph;
         }
 
         Integer find() {
-            //todo exit in case nothing could be found
-            boolean flag = true;
+            calculateReachableShortestPathDistances();
+            return getDestinationShortestPath();
+        }
 
-            while (!dist.containsKey(dest)) {
-                int minHopCost = Integer.MAX_VALUE;
-                Vertex nextVertexToHop = null;
+        private void calculateReachableShortestPathDistances() {
+            while (exploreNextVertexToHop());
+        }
 
-                for (final Vertex v : explored) {
-                    final List<Vertex> outgoingVertices = graph.getOutgoingVertices(v);
+        private boolean exploreNextVertexToHop() {
+            final Entry<Vertex, Integer> nextVertexAndHopCost = nextVertexAndHopCost();
 
-                    for (final Vertex w : outgoingVertices) {
-                        if (!explored.contains(w)) {
-                            int currentHopCost = graph.edgeHopCost(new Edge(v, w)) + dist.get(v);
-                            if (minHopCost >= currentHopCost) {
-                                nextVertexToHop = w;
-                                minHopCost = currentHopCost;
-                            }
+            boolean newVertexExplored = nextVertexAndHopCost.getKey() != null;
+            if (newVertexExplored) {
+                shortestDistances.put(nextVertexAndHopCost.getKey(), nextVertexAndHopCost.getValue());
+                explored.add(nextVertexAndHopCost.getKey());
+            }
+
+            return newVertexExplored;
+        }
+
+        private Entry<Vertex, Integer> nextVertexAndHopCost() {
+            int minHopCost = Integer.MAX_VALUE;
+            Vertex nextVertexToHop = null;
+
+            for (final Vertex v : explored) {
+                final List<Vertex> outgoingVertices = graph.getOutgoingVertices(v);
+
+                for (final Vertex w : outgoingVertices) {
+                    if (!explored.contains(w)) {
+                        int currentHopCost = graph.edgeHopCost(new Edge(v, w)) + shortestDistances.get(v);
+                        if (minHopCost >= currentHopCost) {
+                            nextVertexToHop = w;
+                            minHopCost = currentHopCost;
                         }
                     }
                 }
-
-                dist.put(nextVertexToHop, minHopCost);
-                explored.add(nextVertexToHop);
-
             }
 
-            return dist.get(dest);
+            return new SimpleEntry<>(nextVertexToHop, minHopCost);
+        }
+
+        private Integer getDestinationShortestPath() {
+            return shortestDistances.get(dest);
         }
     }
 

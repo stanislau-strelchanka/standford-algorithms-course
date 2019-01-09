@@ -27,7 +27,8 @@ public class ShortestPathTest {
     public void testSimpleCase() {
         final Graph graph = TestUtils.readGraph("week5_6/graph/dijkstra/test.txt");
 
-        final String hopDistances = getHopDistances(graph, "1", "1", "2", "3", "4", "5", "6", "7", "8");
+        final String hopDistances = getHopDistances(graph, "1",
+                "1", "2", "3", "4", "5", "6", "7", "8");
 
         assertEquals("0,1,2,3,4,4,3,2", hopDistances);
     }
@@ -36,7 +37,8 @@ public class ShortestPathTest {
     public void assignment() {
         final Graph graph = TestUtils.readGraph("week5_6/graph/dijkstra/dijkstra_assignment.txt");
 
-        final String hopDistances = getHopDistances(graph, "1", "7", "37", "59", "82", "99", "115", "133", "165", "188", "197");
+        final String hopDistances = getHopDistances(graph, "1",
+                "7", "37", "59", "82", "99", "115", "133", "165", "188", "197");
 
         assertEquals("2599,2610,2947,2052,2367,2399,2029,2442,2505,3068", hopDistances);
     }
