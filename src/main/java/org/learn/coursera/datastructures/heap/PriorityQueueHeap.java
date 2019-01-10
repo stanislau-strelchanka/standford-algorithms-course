@@ -45,4 +45,9 @@ public class PriorityQueueHeap implements Heap {
     public void delete(Integer x) {
         priorityQueue.remove(x);
     }
+
+    @Override
+    public Integer size() {
+        return priorityQueue.size();
+    }
 }

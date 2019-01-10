@@ -18,4 +18,6 @@ public interface Heap {
 
     // log(n)
     void delete(final Integer x);
+
+    Integer size();
 }

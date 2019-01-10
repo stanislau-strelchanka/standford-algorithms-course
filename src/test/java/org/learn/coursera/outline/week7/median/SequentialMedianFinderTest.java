@@ -1,5 +1,6 @@
 package org.learn.coursera.outline.week7.median;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.outline.TestUtils;
 
@@ -9,7 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SequentialMedianFinderTest {
 
-    private SequentialMedianFinder medianFinder = new HeapSequentialMedianFinder();
+    private SequentialMedianFinder medianFinder;
+
+    @BeforeEach
+    public void init() {
+        medianFinder = new HeapSequentialMedianFinder();
+    }
 
     @Test
     public void testSimpleTestCase() {
@@ -24,7 +30,7 @@ public class SequentialMedianFinderTest {
         final List<Integer> integers = TestUtils.readFileLines("week7/median/median_assignment.txt");
 
         final Integer sequentialMediansSum = findSequentialMediansSum(integers);
-        assertEquals(6666, sequentialMediansSum % 10_000);
+        assertEquals(1213, sequentialMediansSum % 10_000);
     }
 
     private Integer findSequentialMediansSum(List<Integer> integers) {
