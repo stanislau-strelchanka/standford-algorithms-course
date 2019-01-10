@@ -1,5 +1,6 @@
 package org.learn.coursera.outline.week4.mincut;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.learn.coursera.datastructures.graph.impl.AdjacencyListGraph;
 import org.learn.coursera.datastructures.graph.Graph;
@@ -34,14 +35,18 @@ public class CountMinCutTest {
     public void test() {
         final int count = countMinCut.count(createDummyGraph());
 
+        // should be ~ 2 in most cases
+        System.out.println(count);
         assertEquals(2, count);
     }
 
     @Test
+    @Disabled
     public void assignment() {
         Graph graph = TestUtils.readGraph("week4/kargerMinCut.txt");
         final int count = countMinCut.count(graph);
-        // should be ~ 17
+
+        // should be ~ 17 in most cases
         System.out.println(count);
     }
 }
