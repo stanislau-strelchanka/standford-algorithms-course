@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface TwoSumFinder {
 
-    Integer find(final List<Integer> numbers, final Integer sum);
+    Integer find(final List<Long> numbers, final Integer sum);
 }

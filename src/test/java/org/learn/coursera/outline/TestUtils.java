@@ -32,6 +32,21 @@ public class TestUtils {
         return lines;
     }
 
+    public static List<Long> readLongFileLines(final String filePath) {
+        final List<Long> lines = new ArrayList<>(100_000);
+        try (final BufferedReader reader = new BufferedReader(new InputStreamReader(
+                getFileStream(filePath),
+                StandardCharsets.UTF_8))) {
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                lines.add(Long.valueOf(line));
+            }
+        } catch (final Exception e) {
+            System.out.println(e);
+        }
+        return lines;
+    }
+
     public static Graph readGraph(final String filePath) {
         final InputStream is = getFileStream(filePath);
         return getGraphFromStream(is);
