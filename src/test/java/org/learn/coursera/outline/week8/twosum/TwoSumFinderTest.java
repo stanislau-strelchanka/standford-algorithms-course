@@ -9,11 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TwoSumFinderTest {
 
-    final TwoSumFinder twoSumFinder = new TwoSumFinderImpl();
+    TwoSumFinder twoSumFinder;
 
     @Test
     public void testSimpleTestCase() {
         List<Long> numbers = TestUtils.readLongFileLines("week8/twosum/simple-2sum-test.txt");
+
         final int result = getDistinct2SumsOfInterval(numbers, 3, 10);
 
         assertEquals(8, result);
@@ -22,15 +23,17 @@ public class TwoSumFinderTest {
     @Test
     public void testAssignment() {
         List<Long> numbers = TestUtils.readLongFileLines("week8/twosum/2sum-assignment.txt");
+
         final int result = getDistinct2SumsOfInterval(numbers, -10_000, 10_000);
 
         assertEquals(666, result);
     }
 
-    public Integer getDistinct2SumsOfInterval(final List<Long> numbers, final Integer startInterval, final Integer endInterval) {
+    public Integer getDistinct2SumsOfInterval(final List<Long> numbers, final long startInterval, final long endInterval) {
         Integer result = 0;
-        for (int i = startInterval; i <= endInterval; i++) {
-            result += twoSumFinder.find(numbers, i);
+        twoSumFinder = new TwoSumFinderImpl(numbers);
+        for (long i = startInterval; i <= endInterval; i++) {
+            result += twoSumFinder.find(i);
         }
 
         return result;
